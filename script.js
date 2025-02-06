@@ -1,19 +1,37 @@
-// Mostrar el modal cuando se hace clic en "Sí"
-document.getElementById('yesBtn').addEventListener('click', function() {
-    const modal = document.getElementById('customModal');
-    modal.style.display = 'flex';
+// Obtener referencias a los elementos del DOM
+const modal = document.getElementById('customModal');
+const video = document.getElementById('valentineVideo');
+const yesBtn = document.getElementById('yesBtn');
+const closeBtn = document.querySelector('.close');
+const closeModalBtn = document.getElementById('closeModal');
+
+// Mostrar el modal y reproducir el video cuando se hace clic en "Sí"
+yesBtn.addEventListener('click', function() {
+    modal.style.display = 'flex'; // Mostrar el modal
+    video.play(); // Reproducir el video automáticamente
 });
 
-// Cerrar el modal cuando se hace clic en la "X"
-document.querySelector('.close').addEventListener('click', function() {
-    const modal = document.getElementById('customModal');
-    modal.style.display = 'none';
+// Cerrar el modal y pausar el video cuando se hace clic en la "X"
+closeBtn.addEventListener('click', function() {
+    modal.style.display = 'none'; // Ocultar el modal
+    video.pause(); // Pausar el video
+    video.currentTime = 0; // Reiniciar el video al principio
 });
 
-// Cerrar el modal cuando se hace clic en el botón "Cerrar"
-document.getElementById('closeModal').addEventListener('click', function() {
-    const modal = document.getElementById('customModal');
-    modal.style.display = 'none';
+// Cerrar el modal y pausar el video cuando se hace clic en el botón "Cerrar"
+closeModalBtn.addEventListener('click', function() {
+    modal.style.display = 'none'; // Ocultar el modal
+    video.pause(); // Pausar el video
+    video.currentTime = 0; // Reiniciar el video al principio
+});
+
+// Cerrar el modal y pausar el video cuando se hace clic fuera del modal
+window.addEventListener('click', function(event) {
+    if (event.target === modal) {
+        modal.style.display = 'none'; // Ocultar el modal
+        video.pause(); // Pausar el video
+        video.currentTime = 0; // Reiniciar el video al principio
+    }
 });
 
 // Mover el botón "No" cuando se pasa el mouse sobre él
